@@ -40,63 +40,38 @@ A=[a0,a1,a2,a3,a4,a5];
 ________________________
 
 
-    3)  Une racine alpha de ft.
+    3)  Une racine alpha de ft et l'élément beta.
 
 
  al=Mod(x,ft);
 
-__________________________
-
-
-    4) Les éléments beta et gamma.
-
-
-be=sum(i=1,6,A[i]*al^(i-1));
-
-ga=sum(i=1,6,A[i]*(1/al)^(i-1));
-
+ be=sum(i=1,6,A[i]*al^(i-1));
 
 __________________________
 
 
-    5)  Pour l’assertion 2 du théorème 1, afin de vérifier que  beta et gamma sont racines de ft, on     
-        utilise les codes:
+    4)  Pour l’assertion 2 du théorème 1  on  constate que :   
+       
+         lift((x-al)*(x-be)*(x-be/al)*(x-1/al)*(x-1/be)*(x-al/be)-ft)
 
-
-                        lift(subst(ft,x,be))     et     lift(subst(ft,x,ga))
-
-
-       on trouve 0.
+        est nul. 
 
 _____________________________
 
 
-    6) Pour l’assertion 3 du théorème 1, en écrivant :
+    5) Afin de vérifier que [al,be,1] appartient à F_5 : avec le code
 
 
-          lift(al^5+be^5+1)       lift((1/al)^5+ga^5+1)      lift((1/ga)^5+(1/be)^5+1)
+          lift(al^5+be^5+1)       
 
 
        on trouve 0.
 
-
-_____________________________
-
-
-     7) Pour vérifier que les trois points sont sur la conique Ct :
-
-
-          lift(al^2+be^2+1+t*(al*be+al+be))   lift((1/al)^2+ga^2+1+t*((1/al)*ga+1/al+ga))  
-
-          lift((1/ga)^2+(1/be)^2+1+t*((1/ga)*(1/be)+1/ga+1/be))       
-
-
-      on trouve 0.
 
 ___________________________________
 
 
-     8) Afin de vérifier la seconde égalité de la condition (4.1) :
+     6) Afin de vérifier la seconde égalité de la condition (4.1) :
 
 
 L'expression de y^5 en fonction de y est :
@@ -104,18 +79,21 @@ L'expression de y^5 en fonction de y est :
 V=(t^3 - 2*t)*x^5 + ((t^4 - 3*t^2 + 1)*y + (t^4 + 3*t^3 - 4*t^2 - 2*t))*x^4 + ((4*t^4 - 3*t^3 - 6*t^2 + 2*t)*y + (3*t^4 + 2*t^3 - 4*t^2 - 4*t))*x^3 + ((6*t^4 - 6*t^3 - 5*t^2 + 2)*y + (3*t^4 + 2*t^3 - 4*t^2 - 4*t))*x^2 + ((4*t^4 - 3*t^3 - 6*t^2 + 2*t)*y + (t^4 + 3*t^3 - 4*t^2 - 2*t))*x + ((t^4 - 3*t^2 + 1)*y + (t^3 - 2*t));
 
 
-En écrivant x^5+V+1, qui est nul, sous la forme A+B*y, on trouve 
+En écrivant x^5+V+1, qui est nul, sous la forme S+T*y, on trouve 
 
-y=-A/B  avec 
+y=-S/T  avec 
 
-A=(t^3 - 2*t + 1)*x^5 + (t^4 + 3*t^3 - 4*t^2 - 2*t)*x^4 + (3*t^4 + 2*t^3 - 4*t^2 - 4*t)*x^3 + (3*t^4 + 2*t^3 - 4*t^2 - 4*t)*x^2 + (t^4 + 3*t^3 - 4*t^2 - 2*t)*x + (t^3 - 2*t + 1);
+S=(t^3 - 2*t + 1)*x^5 + (t^4 + 3*t^3 - 4*t^2 - 2*t)*x^4 + (3*t^4 + 2*t^3 - 4*t^2 - 4*t)*x^3 + (3*t^4 + 2*t^3 - 4*t^2 - 4*t)*x^2 + (t^4 + 3*t^3 - 4*t^2 - 2*t)*x + (t^3 - 2*t + 1);
 
-B=(t^4 - 3*t^2 + 1)*x^4 + (4*t^4 - 3*t^3 - 6*t^2 + 2*t)*x^3 + (6*t^4 - 6*t^3 - 5*t^2 + 2)*x^2 + (4*t^4 - 3*t^3 - 6*t^2 + 2*t)*x + (t^4 - 3*t^2 + 1);
-
-
-En effectuant (-A/B)%ft on obtient, après factorisation des coefficients, l'expression annoncée de y.
+T=(t^4 - 3*t^2 + 1)*x^4 + (4*t^4 - 3*t^3 - 6*t^2 + 2*t)*x^3 + (6*t^4 - 6*t^3 - 5*t^2 + 2)*x^2 + (4*t^4 - 3*t^3 - 6*t^2 + 2*t)*x + (t^4 - 3*t^2 + 1);
 
 
+En effectuant (-S/T)%ft, on obtient l'expression annoncée de y. En effet, on constate que  
+
+
+                             (-S/T)%ft-sum(i=1,6,A[i]*x^(i-1))
+
+est nul.
 _____________________________________________
 
 
